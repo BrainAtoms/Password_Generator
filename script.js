@@ -1,42 +1,34 @@
 // Assignment code here
-characters =
-  " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
-
-// askUser = function () {
-//   var userChoice = window.prompt ("How many characters would you like your password to contain? (Max=12, Min=8)")
-//   if (!userChoice) {
-//     return
-//   }
-//   {
-//   var specialChar = window.confirm ("Click OK to confirm including special characters.")
-// if (!specialChar) {chars= '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'}
-//   var numChar = window.confirm ("Click OK to confirm including numeric characters.")
-// if (!numChar) { chars= 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'}
-//   var lowChar = window.confirm ("Click OK to confirm including lowercase characters.")
-// if (!lowChar) {chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'}
-//   var uppChar = window.confirm ("Click OK to confirm including uppercase characters.")
-// if (!uppChar) {chars = '0123456789abcdefghijklmnopqrstuvwxyz'}
-// else {chars = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';}
-// }
-// writePassword()
-// }
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
   var userChoice = window.prompt(
-    "How many characters would you like your password to contain? (Max=12, Min=8)"
+    "How many characters would you like your password to contain? (Max=15, Min=8)"
   );
+  if (isNaN(userChoice)) {
+   window.alert("You must enter a number.");
+   return; 
+  }
+  if (userChoice < 8) {
+    window.alert("That number is too low.");
+    return;
+  }
+  if (userChoice > 15) {
+    window.alert("That number is too high"); 
+    return; 
+  }
   if (!userChoice) {
     return;
-  } 
+  }
+  else 
   var chars = "";
   var specialChar = window.confirm(
     "Click OK to confirm including special characters."
   );
   if (specialChar) {
-    chars += ` !"#$%&\'()*+,-./0123456789:;<=>?@`;
+    chars += ` !"#$%&'()*+,-./:;<=>?@[\]^_{|}~`;
   }
   var numChar = window.confirm(
     "Click OK to confirm including numeric characters."
@@ -55,6 +47,10 @@ function generatePassword() {
   );
   if (uppChar) {
     chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  }
+  if (!specialChar && !numChar && !lowChar && !uppChar) {
+    window.alert("You must select at least one character type");
+    return;
   }
   {
     var passwordLength = userChoice;
