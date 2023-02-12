@@ -12,7 +12,7 @@ function writePassword() {
     return;
   }
   // returns to home screen if user fails to select a number
-  if (typeof userChoice !== 'number') {
+  if (isNaN(userChoice)) {
    window.alert("You must enter a number.");
    return; 
   }
